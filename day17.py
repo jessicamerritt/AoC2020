@@ -27,8 +27,8 @@ def part1(fileName, dimensions, iterations):
     for _ in range(iterations):
         #Have to deal with more neighbors each iteration
         cube = numpy.pad(cube, 1).astype(int)
-        neighborCount = scipy.ndimage.convolve(cube, slidingWindow, mode="constant", cval=0)
-        cube = (cube == 1) & ((neighborCount == 2) | (neighborCount == 3)) | (cube == 0) & (neighborCount == 3)
+        neighborCountMatrix = scipy.ndimage.convolve(cube, slidingWindow, mode="constant", cval=0)
+        cube = (cube == 1) & ((neighborCountMatrix == 2) | (neighborCountMatrix == 3)) | (cube == 0) & (neighborCountMatrix == 3)
 
     return(numpy.sum(cube))
 
